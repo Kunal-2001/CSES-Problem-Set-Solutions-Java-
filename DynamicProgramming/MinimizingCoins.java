@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class RemovalGame {
+public class MinimizingCoins {
 	static int mod = 1000000007;
 
 	static int gcd(int a, int b) {
@@ -59,30 +59,29 @@ public class RemovalGame {
 	public static void main(String[] args) {
 		FastReader sc = new FastReader();
 		int n = sc.nextInt();
-		long arr[] = new long [n];
-		for(int i = 0 ; i < n; i++) {
-			arr[i] = sc.nextLong();
+	    int x = sc.nextInt();
+		long a[] = new long [n];
+		for(int i = 0 ; i < n ; i++){
+		    a[i] = sc.nextLong();
 		}
-		
-		
-		long dp[][] = new long [n][n];
-		for(int i = 0 ; i < n; i++) {
-			
+		long dp[] = new long [x+1];
+		for(int i = 0 ; i <= x ; i++) {
+			dp[i] = Integer.MAX_VALUE;
 		}
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+	    dp[0] = 0;
+	    for(int i = 1 ; i <= x ; i++){
+	        for(int j = 0 ; j < n ; j++){
+	            if(i- a[j] >= 0){
+	            	int z = (int)(i-a[j]);
+	                dp[i] = Math.min(dp[i] , dp[z]+1);
+	            }
+	        }
+	        
+	    }
+	   if(dp[x] == Integer.MAX_VALUE){
+	       System.out.println("-1");
+	   }else{
+	       System.out.println(dp[x]);
+	   }
 	}
 }
